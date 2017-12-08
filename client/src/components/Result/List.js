@@ -1,13 +1,13 @@
 import React from "react";
-import "./List.css";
+// import "./List.css";
 
-export const List = props => 
+export const List = props => {
 
 	return(
 		<div className="list-overflow-container">
-			<ul className="list-group">
+			<ul id={props.id} className="list-group">
 				{props.children}
 			</ul>
 		</div>
-		)
-
+		);
+}

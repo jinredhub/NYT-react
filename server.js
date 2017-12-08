@@ -1,7 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const routes = require("./routes");
+// const routes = require("./routes");
+const routes = require("./controllers/articlesController.js");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -14,14 +15,31 @@ app.use(express.static("client/build"));
 app.use(routes);
 
 // Set up promises with mongoose
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
+mongoose.Promise = Promise;
+
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/nytreat",
+  "mongodb://localhost/nytreact",
   {
     useMongoClient: true
   }
 );
+// ---------------------------------------------
+// original
+// mongoose.connect(
+//   process.env.MONGODB_URI || "mongodb://localhost/nytreact",
+//   {
+//     useMongoClient: true
+//   }
+// );
+// ---------------------------------------
+// from scraped article
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nyTech";
+// mongoose.connect(MONGODB_URI, {
+//   useMongoClient: true
+// });
+// --------------------------------------
 
 // Start the API server
 app.listen(PORT, function() {
