@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-// import DeleteBtn from "../../components/DeleteBtn";
 import Title from "../../components/Title";
 import { Input, FormBtn} from "../../components/SearchForm";
 // import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/Result";
+import { List, ListItem, SaveBtn } from "../../components/Result";
 import axios from "axios";
 
 // import { List, ListItem } from "../../components/List";
@@ -17,16 +16,18 @@ class Articles extends Component {
     endYear: "",
     snippet: [],
     url: [],
-    articles: [],
+    // articles: [],
+
   };
 
   componentDidMount(){
     this.loadArticles();
   }
 
-  loadArticles = () =>{
+  // load articles when page opened
+  loadArticles = (topic="food", startYear="2016", endYear="2017") =>{
     console.log("loadArticles!!!!!!!!!!!!!");
-    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=db77efebc6d9484ea2f5114e3811b1e5&begin_date=19991222&end_date=20001111"
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=db77efebc6d9484ea2f5114e3811b1e5&q="+ topic + "&begin_date=" + startYear + "0111&end_date=" + endYear + "1111"
 
     axios.get(
       url: url,
@@ -43,7 +44,6 @@ class Articles extends Component {
       this.setState({
         snippet: [... newSnippet],
         url: [... newUrl],
-        // articles: data
       })
       console.log("new state: ", this.state.snippet);
       console.log("new url: ", this.state.url);
@@ -52,32 +52,30 @@ class Articles extends Component {
     });
   }
 
-  // renderResult = (arr) =>{
-  //   console.log("rendering result!!!!!!");
-  //   let dataArr = arr;
-  //   console.log("dataArr: ", dataArr);
 
-  //   let newList = document.createElement("ListItem");
-  //   newList.innerHTML = dataArr[3].headline.main;
-  //   let target = document.getElementById("result");
-  //   target.appendChild(newList);
-    // for (let i=0; i<dataArr.length; i++){
-    //   selList.appencChild(dataArr[i]);
-    // }
-  // }
-
-  // search article
+  // search NYT article when search button clicked
   handleFormSubmit = (event) =>{
     event.preventDefault();
     console.log("search btn clicked!");
-    console.log( "topic: ", this.state.topic);
+    console.log("topic: ", this.state.topic, ",startYear: ", this.state.startYear, ",endYear: ", this.state.endYear);
+    this.loadArticles(this.state.topic, this.state.startYear, this.state.endYear);
   };
+
 
   // save article when save btn clicked
   saveArticle= (snippet, url) =>{
     console.log("save article");
     console.log("url: ", url, " snippet: ", snippet);
 
+    axios.post("/articles", {
+      title: snippet ,
+      url: url,
+    }).then((res)=>{
+      // let data = res.data.response.docs;
+      console.log("You saved article!!!");
+    }).catch((err)=>{
+      console.log(err);
+    });
   }
 
 
@@ -126,7 +124,6 @@ class Articles extends Component {
               >
                 Search
               </FormBtn>
-              <p>current id: {this.state.id}</p>
             </form>
           </Col>
         </Row>
@@ -134,10 +131,50 @@ class Articles extends Component {
         <Row>
           <Col size="col">
             <List>
-                <ListItem url={this.state.url[0]} saveArticle={this.saveArticle}>{this.state.snippet[0]}</ListItem>
-                <ListItem url={this.state.url[1]} saveArticle={this.saveArticle}>{this.state.snippet[1]}</ListItem>
-                <ListItem url={this.state.url[2]} saveArticle={this.saveArticle}>{this.state.snippet[2]}</ListItem>
-              })}
+                <ListItem 
+                  url={this.state.url[0]} 
+                  snippet={this.state.snippet[0]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[0]}
+                    url={this.state.url[0]}
+                  >
+                  save
+                  </SaveBtn>
+                </ListItem>
+                <ListItem 
+                  url={this.state.url[1]} 
+                  snippet={this.state.snippet[1]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[1]}
+                    url={this.state.url[1]}
+                  >
+                  save
+                  </SaveBtn>
+                </ListItem>
+                <ListItem 
+                  url={this.state.url[2]} 
+                  snippet={this.state.snippet[2]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[2]}
+                    url={this.state.url[2]}
+                  >
+                  save
+                  </SaveBtn>
+                </ListItem>
+            </List>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col size="col">
+            <List>
+              
             </List>
           </Col>
         </Row>
