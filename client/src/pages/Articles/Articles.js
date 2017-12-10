@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem, SaveBtn, DeleteBtn } from "../../components/Result";
 import axios from "axios";
+import {Cards} from "../../components/Cards";
 
 
 class Articles extends Component {
@@ -130,45 +131,115 @@ class Articles extends Component {
 
         <Row>
           <Col size="12">
-            <div className="card text-center">
-              <div className="card-header">
-                <h5>Search</h5>
-              </div>
-              <div className="card-block">
-               <form style={{margin: 30}}>
-                  <Input 
-                    value={this.state.topic}
-                    id="topic"
-                    placeholder="Topic (required)"
-                    onChange={(ev)=>{
-                      this.setState({topic: ev.target.value});
-                    }}
-                  />
-                  <Input
-                    value={this.state.startYear}
-                    id="startYear"
-                    placeholder="1999 (required)"
-                    onChange={(ev)=>{
-                      this.setState({startYear: ev.target.value});
-                    }}
-                  />
-                  <Input
-                    value={this.state.endYear}
-                    id="endYear"
-                    placeholder="2017 (required)"
-                    onChange={(ev)=>{
-                      this.setState({endYear: ev.target.value});
-                    }}
-                  />
-                  <FormBtn 
-                    disabled={!(this.state.topic && this.state.startYear && this.state.endYear)}
-                    onClick={this.handleFormSubmit}
+            <Cards
+              header="Search"
+            >
+             <form style={{margin: 30}}>
+                <Input 
+                  value={this.state.topic}
+                  id="topic"
+                  placeholder="Topic (required)"
+                  onChange={(ev)=>{
+                    this.setState({topic: ev.target.value});
+                  }}
+                />
+                <Input
+                  value={this.state.startYear}
+                  id="startYear"
+                  placeholder="1999 (required)"
+                  onChange={(ev)=>{
+                    this.setState({startYear: ev.target.value});
+                  }}
+                />
+                <Input
+                  value={this.state.endYear}
+                  id="endYear"
+                  placeholder="2017 (required)"
+                  onChange={(ev)=>{
+                    this.setState({endYear: ev.target.value});
+                  }}
+                />
+                <FormBtn 
+                  disabled={!(this.state.topic && this.state.startYear && this.state.endYear)}
+                  onClick={this.handleFormSubmit}
+                >
+                  Search
+                </FormBtn>
+              </form>              
+            </Cards>
+          </Col>
+        </Row>
+
+        <br/>
+
+        <Row>
+          <Col size="12">
+            <Cards
+              header="Result"
+            >
+              <List>
+                <ListItem 
+                  url={this.state.url[0]} 
+                  snippet={this.state.snippet[0]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[0]}
+                    url={this.state.url[0]}
                   >
-                    Search
-                  </FormBtn>
-                </form>
-              </div>
-            </div>
+                  save
+                  </SaveBtn>
+                </ListItem>
+                <ListItem 
+                  url={this.state.url[1]} 
+                  snippet={this.state.snippet[1]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[1]}
+                    url={this.state.url[1]}
+                  >
+                  save
+                  </SaveBtn>
+                </ListItem>
+                <ListItem 
+                  url={this.state.url[2]} 
+                  snippet={this.state.snippet[2]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[2]}
+                    url={this.state.url[2]}
+                  >
+                  save
+                  </SaveBtn>
+                </ListItem>
+                <ListItem 
+                  url={this.state.url[3]} 
+                  snippet={this.state.snippet[3]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[3]}
+                    url={this.state.url[3]}
+                  >
+                  save
+                  </SaveBtn>
+                </ListItem>
+                <ListItem 
+                  url={this.state.url[4]} 
+                  snippet={this.state.snippet[4]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[4]}
+                    url={this.state.url[4]}
+                  >
+                  save
+                  </SaveBtn>
+                </ListItem>
+              </List>            
+            </Cards>
           </Col>
         </Row>
 
@@ -176,88 +247,9 @@ class Articles extends Component {
 
         <Row>
           <Col size="12">
-              <div className="card">
-                <div className="card-header text-center">
-                 <h5>Results</h5>
-                </div>
-                <div className="card-block">
-                  <List>
-                    <ListItem 
-                      url={this.state.url[0]} 
-                      snippet={this.state.snippet[0]}
-                    >
-                      <SaveBtn
-                        saveArticle={this.saveArticle}
-                        snippet={this.state.snippet[0]}
-                        url={this.state.url[0]}
-                      >
-                      save
-                      </SaveBtn>
-                    </ListItem>
-                    <ListItem 
-                      url={this.state.url[1]} 
-                      snippet={this.state.snippet[1]}
-                    >
-                      <SaveBtn
-                        saveArticle={this.saveArticle}
-                        snippet={this.state.snippet[1]}
-                        url={this.state.url[1]}
-                      >
-                      save
-                      </SaveBtn>
-                    </ListItem>
-                    <ListItem 
-                      url={this.state.url[2]} 
-                      snippet={this.state.snippet[2]}
-                    >
-                      <SaveBtn
-                        saveArticle={this.saveArticle}
-                        snippet={this.state.snippet[2]}
-                        url={this.state.url[2]}
-                      >
-                      save
-                      </SaveBtn>
-                    </ListItem>
-                    <ListItem 
-                      url={this.state.url[3]} 
-                      snippet={this.state.snippet[3]}
-                    >
-                      <SaveBtn
-                        saveArticle={this.saveArticle}
-                        snippet={this.state.snippet[3]}
-                        url={this.state.url[3]}
-                      >
-                      save
-                      </SaveBtn>
-                    </ListItem>
-                    <ListItem 
-                      url={this.state.url[4]} 
-                      snippet={this.state.snippet[4]}
-                    >
-                      <SaveBtn
-                        saveArticle={this.saveArticle}
-                        snippet={this.state.snippet[4]}
-                        url={this.state.url[4]}
-                      >
-                      save
-                      </SaveBtn>
-                    </ListItem>
-                  </List>
-                </div>
-              </div>
-
-          </Col>
-        </Row>
-
-        <br/>
-
-        <Row>
-          <Col size="12">
-            <div className="card">
-              <div className="card-header text-center">
-                <h5>Saved Articles</h5>
-              </div>
-              <div className="card-block"></div>
+            <Cards
+              header="Saved Articles"
+            >
               {this.state.savedArticles.length ? (
                 <List>
                 {this.state.savedArticles.map((value)=>(
@@ -276,7 +268,7 @@ class Articles extends Component {
                 ))}
                 </List>
               ) : (<h3>no saved articles</h3>)}
-            </div>
+            </Cards>
           </Col>
         </Row>
 
