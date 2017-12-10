@@ -20,26 +20,11 @@ mongoose.Promise = Promise;
 
 // Connect to the Mongo DB
 mongoose.connect(
-  "mongodb://localhost/nytreact",
+  process.env.MONGODB_URI || "mongodb://localhost/nytreact",
   {
     useMongoClient: true
   }
 );
-// ---------------------------------------------
-// original
-// mongoose.connect(
-//   process.env.MONGODB_URI || "mongodb://localhost/nytreact",
-//   {
-//     useMongoClient: true
-//   }
-// );
-// ---------------------------------------
-// from scraped article
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nyTech";
-// mongoose.connect(MONGODB_URI, {
-//   useMongoClient: true
-// });
-// --------------------------------------
 
 // Start the API server
 app.listen(PORT, function() {

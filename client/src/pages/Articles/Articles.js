@@ -7,7 +7,6 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem, SaveBtn, DeleteBtn } from "../../components/Result";
 import axios from "axios";
 
-// import { List, ListItem } from "../../components/List";
 
 class Articles extends Component {
   state = {
