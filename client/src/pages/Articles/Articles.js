@@ -4,7 +4,7 @@ import { Input, FormBtn} from "../../components/SearchForm";
 // import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem, SaveBtn } from "../../components/Result";
+import { List, ListItem, SaveBtn, DeleteBtn } from "../../components/Result";
 import axios from "axios";
 
 // import { List, ListItem } from "../../components/List";
@@ -17,12 +17,28 @@ class Articles extends Component {
     snippet: [],
     url: [],
     // articles: [],
-
+    savedArticles: [],
   };
 
   componentDidMount(){
     this.loadArticles();
+    this.loadSavedArticles();
   }
+
+
+  // delete saved articles on btn click
+  deleteArticle = (snippet) =>{
+    axios.delete("/articles/" + snippet)
+    .then((res)=>{
+
+      console.log("deleted article");
+      this.loadSavedArticles();
+
+    }).catch((err)=>{
+      console.log(err);
+    });
+  }
+
 
   // load articles when page opened
   loadArticles = (topic="food", startYear="2016", endYear="2017") =>{
@@ -37,7 +53,7 @@ class Articles extends Component {
       console.log("log1: ", data);
       let newSnippet = [];
       let newUrl = [];
-      for(let i=0; i<data.length;i++){
+      for(let i=0; i<5;i++){
         newSnippet.push(data[i].snippet);
         newUrl.push(data[i].web_url);
       }
@@ -47,6 +63,26 @@ class Articles extends Component {
       })
       console.log("new state: ", this.state.snippet);
       console.log("new url: ", this.state.url);
+    }).catch((err)=>{
+      console.log(err);
+    });
+  }
+
+  // load saved articles
+  loadSavedArticles = () =>{
+    axios.get("/articles")
+    .then((res)=>{
+
+      console.log("loadArticles res.data", res.data);
+      let savedArticles = [];
+
+      for(let i=0; i<res.data.length; i++){
+        savedArticles.push(res.data[i]);
+      }
+      this.setState({
+        savedArticles: [...savedArticles],
+      })
+      console.log("new savedArticles: ", this.state.savedArticles);
     }).catch((err)=>{
       console.log(err);
     });
@@ -71,8 +107,8 @@ class Articles extends Component {
       title: snippet ,
       url: url,
     }).then((res)=>{
-      // let data = res.data.response.docs;
       console.log("You saved article!!!");
+      this.loadSavedArticles();
     }).catch((err)=>{
       console.log(err);
     });
@@ -80,10 +116,12 @@ class Articles extends Component {
 
 
   render() {
+    console.log("=======================",this.state)
+
     return (
-      <Container fluid>
+      <Container>
         <Row>
-          <Col size="col">
+          <Col size="12">
             <Title>
               <h1>New Yourk Times Article Scrubber</h1>
               <p>Search for and annotate articles of interest!</p>
@@ -92,7 +130,7 @@ class Articles extends Component {
         </Row>
 
         <Row>
-          <Col size="col">
+          <Col size="12">
             <form>
               <Input 
                 value={this.state.topic}
@@ -129,8 +167,9 @@ class Articles extends Component {
         </Row>
 
         <Row>
-          <Col size="col">
+          <Col size="12">
             <List>
+
                 <ListItem 
                   url={this.state.url[0]} 
                   snippet={this.state.snippet[0]}
@@ -167,15 +206,60 @@ class Articles extends Component {
                   save
                   </SaveBtn>
                 </ListItem>
+                <ListItem 
+                  url={this.state.url[3]} 
+                  snippet={this.state.snippet[3]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[3]}
+                    url={this.state.url[3]}
+                  >
+                  save
+                  </SaveBtn>
+                </ListItem>
+                <ListItem 
+                  url={this.state.url[4]} 
+                  snippet={this.state.snippet[4]}
+                >
+                  <SaveBtn
+                    saveArticle={this.saveArticle}
+                    snippet={this.state.snippet[4]}
+                    url={this.state.url[4]}
+                  >
+                  save
+                  </SaveBtn>
+                </ListItem>
+
             </List>
           </Col>
         </Row>
 
         <Row>
-          <Col size="col">
-            <List>
-              
-            </List>
+          <Col size="12">
+            {this.state.savedArticles.length ? (
+                          <List>
+
+            {this.state.savedArticles.map((value)=>(
+              <ListItem
+              url={value.url}
+              snippet={value.title}
+              >
+              <DeleteBtn
+              snippet={value.title}
+              url={value.url}
+              deleteArticle={this.deleteArticle}
+              >
+                delete
+              </DeleteBtn>
+              </ListItem>              
+            ))}
+                        </List>
+
+            ) : (<h3>no saved articles</h3>)}
+
+
+
           </Col>
         </Row>
 

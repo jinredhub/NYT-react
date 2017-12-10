@@ -2,6 +2,6 @@ import React from "react";
 
 export const ListItem = props => 
 
-	<li  className="list-group-item"><a href={props.url}>{props.snippet}</a>{props.children}</li>
+	<li  className="list-group-item">{props.date}<a href={props.url}>{props.snippet}</a>{props.children}</li>
 
 
