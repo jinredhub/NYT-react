@@ -1,7 +1,7 @@
 import React from "react";
 
 const Title = ({ children }) =>
-  <div className="jumbotron" style={{height:200}}>
+  <div className="jumbotron text-center" style={{height:200}}>
     {children}
   </div>;
 

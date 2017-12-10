@@ -6,7 +6,7 @@ export const Cards = props => {
 
             <div className="card">
 		        <div className="card-header text-center">
-		         {props.header}
+		         <h5>{props.header}</h5>
 		        </div>
 		        <div className="card-block">
 		        {props.children}

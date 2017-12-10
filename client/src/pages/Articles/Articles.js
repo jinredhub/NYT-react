@@ -123,8 +123,7 @@ class Articles extends Component {
         <Row>
           <Col size="12">
             <Title>
-              <h1>New Yourk Times Article Scrubber</h1>
-              <p>Search for and annotate articles of interest!</p>
+              <h1>New Yourk Times Article Search</h1>
             </Title>
           </Col>
         </Row>
