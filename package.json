@@ -3,25 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "homepage": "http://jinredhub.github.io/NYT-react",
   "scripts": {
     "server": "node server.js",
-    "buildandserver": "npm run build && node server.js",
     "client": "node scripts/start-client.js",
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
     "seed": "node scripts/seedDB.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
-    "gh-pages": "^1.1.0",
     "nodemon": "^1.11.0"
   },
+  "homepage": "http://jinredhub.github.io/NYT-react",
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
