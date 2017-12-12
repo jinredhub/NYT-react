@@ -17,7 +17,6 @@
     "concurrently": "^3.5.0",
     "nodemon": "^1.11.0"
   },
-  "homepage": "http://jinredhub.github.io/NYT-react",
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
