@@ -6,6 +6,7 @@
   "homepage": "http://jinredhub.github.io/NYT-react",
   "scripts": {
     "server": "node server.js",
+    "buildandserver": "npm run build && node server.js",
     "client": "node scripts/start-client.js",
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
