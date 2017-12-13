@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Title from "../../components/Title";
 import { Input, FormBtn} from "../../components/SearchForm";
 // import API from "../../utils/API";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem, SaveBtn, DeleteBtn } from "../../components/Result";
 import axios from "axios";
@@ -58,8 +58,8 @@ class Articles extends Component {
         newUrl.push(data[i].web_url);
       }
       this.setState({
-        snippet: [...newSnippet],
-        url: [...newUrl],
+        snippet: [... newSnippet],
+        url: [... newUrl],
       })
       console.log("new state: ", this.state.snippet);
       console.log("new url: ", this.state.url);
