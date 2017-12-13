@@ -5,9 +5,9 @@
   "homepage": "http://jinredhub.github.io/NYT-react",
   "proxy": "http://localhost:3001/",
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.0.17"
   },
   "scripts": {
     "start": "react-scripts start",
