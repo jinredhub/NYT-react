@@ -2,7 +2,6 @@
   "name": "mern",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jinredhub.github.io/NYT-react",
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "gh-pages": "^1.1.0",
