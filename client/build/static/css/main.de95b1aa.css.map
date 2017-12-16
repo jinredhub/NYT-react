@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/Title/Title.css"],"names":[],"mappings":"AAAA,MACC,6BAAkC","file":"static/css/main.de95b1aa.css","sourcesContent":["h1, h5{\r\n\tfont-family: 'Spectral SC', serif;\r\n}\n\n\n// WEBPACK FOOTER //\n// ./src/components/Title/Title.css"],"sourceRoot":""}
