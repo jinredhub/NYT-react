@@ -119,14 +119,17 @@ class Articles extends Component {
     console.log("=======================",this.state)
 
     return (
-      <Container>
+        <div>
         <Row>
           <Col size="12">
             <Title>
-              <h1>New Yourk Times Article Search</h1>
+              <h1>New York Times Article Search</h1>
+              <h5>search and save your favorite articles</h5>
             </Title>
           </Col>
         </Row>
+      <Container>
+
 
         <Row>
           <Col size="12">
@@ -273,6 +276,7 @@ class Articles extends Component {
 
         <br/><br/>
       </Container>
+      </div>
     );
   }
 }
