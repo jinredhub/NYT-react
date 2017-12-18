@@ -140,7 +140,8 @@ class Articles extends Component {
                 <Input 
                   value={this.state.topic}
                   id="topic"
-                  placeholder="Topic (required)"
+                  placeholder="required"
+                  label="Topic"
                   onChange={(ev)=>{
                     this.setState({topic: ev.target.value});
                   }}
@@ -148,7 +149,8 @@ class Articles extends Component {
                 <Input
                   value={this.state.startYear}
                   id="startYear"
-                  placeholder="1999 (required)"
+                  placeholder="required"
+                  label="Start Year"
                   onChange={(ev)=>{
                     this.setState({startYear: ev.target.value});
                   }}
@@ -156,7 +158,8 @@ class Articles extends Component {
                 <Input
                   value={this.state.endYear}
                   id="endYear"
-                  placeholder="2017 (required)"
+                  placeholder="required"
+                  label="End Year"
                   onChange={(ev)=>{
                     this.setState({endYear: ev.target.value});
                   }}

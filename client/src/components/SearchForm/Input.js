@@ -3,7 +3,9 @@ import React from "react";
 export const Input = props => 
 
 	<div className = "form-group">
-		<input className = "form-control" {...props} />
+		<label for={props.id}>{props.label}</label>
+		<input className = "form-control" id={props.id} placeholder={props.placeholder} 
+		value={props.value} onChange={props.onChange} />
 	</div>
 
 
