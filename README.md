@@ -1,4 +1,4 @@
-# NYT-react
+# NYTimes-Article-Search
 
 ## visit website
 
