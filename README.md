@@ -6,7 +6,7 @@ https://nytime-react.herokuapp.com/
 
 ## About This App
 
-This app will allow user to sarch articles from NYTimes database. User also can save articels.
+This app will allow users to search articles from NYTimes database. User also can save articels.
 
 ## Starting the app locally
 

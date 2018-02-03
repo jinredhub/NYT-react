@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Title from "../../components/Title";
 import { Input, FormBtn} from "../../components/SearchForm";
-// import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem, SaveBtn, DeleteBtn } from "../../components/Result";
@@ -16,7 +15,6 @@ class Articles extends Component {
     endYear: "",
     snippet: [],
     url: [],
-    // articles: [],
     savedArticles: [],
   };
 
